@@ -20,7 +20,7 @@ model WebProjects {
   updatedAt   DateTime @default(now())
 }
 
-model User {
+model Users {
   id        String   @id @default(uuid())
   email     String   @unique
   password  String
