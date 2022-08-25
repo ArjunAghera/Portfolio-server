@@ -41,7 +41,14 @@ export class AdminService {
   async addWebProject(dto: WebProjectsDto, file: any) {
     let image: UploadApiResponse | UploadApiErrorResponse;
     if (file) {
-      image = await this.cloudinary.uploadImage(file);
+      const upload = new Promise(async (_res, _rej) => {
+        try {
+          image = await this.cloudinary.uploadImage(file);
+        } catch (e) {
+          Error(e);
+        }
+      });
+      await Promise.all([upload]);
     }
     const webProject = await this.prisma.webProjects.create({
       data: {

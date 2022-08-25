@@ -46,4 +46,10 @@ export class AdminController {
   addPhotography(@UploadedFile() file: Express.Multer.File) {
     return this.adminService.addPhotography(file);
   }
+
+  @Post('/photoshop')
+  @UseInterceptors(FileInterceptor('file'))
+  addPhotoshop(@UploadedFile() file: Express.Multer.File) {
+    return this.adminService.addPhotography(file);
+  }
 }
